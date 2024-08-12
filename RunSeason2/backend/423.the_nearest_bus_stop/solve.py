@@ -1,4 +1,5 @@
-def find_closest_stop(stops, x):
+def find_nearest_stop(stops, x):
+
     left, right = 0, len(stops) - 1
     while left <= right:
         mid = (left + right) // 2
@@ -20,7 +21,7 @@ def find_closest_stop(stops, x):
     if stops[left_stop] == x:
         return left_stop + 1
     elif left_stop >= 0 and right_stop < len(stops):
-        return max(left_stop, right_stop) + 1
+        return max(left_stop + 1, right_stop + 1)
     elif left_stop >= 0:
         return left_stop + 1
     else:
@@ -33,4 +34,4 @@ if __name__ == '__main__':
     coords = list(map(int, input().split()))
 
     for coord in coords:
-        print(find_closest_stop(stops, coord))
+        print(find_nearest_stop(stops, coord))
