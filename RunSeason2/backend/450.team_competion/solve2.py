@@ -1,3 +1,4 @@
+# Не является решением задачи
 def min_difficulty(n, alice, bob, eve):
     # Префиксные суммы для каждого участника
     prefix_alice = [0] * (n + 1)
