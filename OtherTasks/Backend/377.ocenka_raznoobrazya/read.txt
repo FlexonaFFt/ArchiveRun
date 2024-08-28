@@ -1,0 +1,39 @@
+def calculate_diversity(n, products, order):
+    from collections import defaultdict
+
+    # Словарь для хранения позиций товаров по категориям
+    category_positions = defaultdict(list)
+
+    # Заполняем словарь категориями и позициями
+    for index, (product_id, category_id) in enumerate(products):
+        category_positions[category_id].append(index)
+
+    # Если все товары в разных категориях, возвращаем n
+    if len(category_positions) == n:
+        return n
+
+    # Находим минимальную разницу позиций для каждой категории
+    min_diversity = float('inf')
+    for positions in category_positions.values():
+        if len(positions) > 1:
+            positions.sort()
+            for i in range(1, len(positions)):
+                min_diversity = min(min_diversity, positions[i] - positions[i - 1])
+
+    return min_diversity if min_diversity != float('inf') else n
+
+# Пример использования
+n = 5
+products = [(1, 1), (2, 1), (3, 1), (4, 2), (5, 2)]
+order = [1, 4, 2, 5, 3]
+print(calculate_diversity(n, products, order))  # Вывод: 2
+
+n = 9
+products = [(0, 1), (2, 1), (3, 1), (4, 2), (5, 2), (6, 2), (7, 3), (8, 3), (999, 3)]
+order = [0, 4, 7, 2, 5, 8, 3, 6, 999]
+print(calculate_diversity(n, products, order))  # Вывод: 3
+
+n = 5
+products = [(1, 1), (2, 2), (3, 3), (4, 4), (5, 5)]
+order = [1, 2, 3, 4, 5]
+print(calculate_diversity(n, products, order))  # Вывод: 5
