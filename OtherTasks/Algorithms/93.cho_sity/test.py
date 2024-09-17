@@ -8,7 +8,8 @@ def finder(n, r, numbers):
         while left < right and numbers[right] - numbers[left] > r:
             left += 1
         # Все индексы от left до right - 1 могут образовать пару с right
-        counter += left
+        # Пары (left, right), (left+1, right), ..., (right-1, right)
+        counter += (right - left)
 
     return counter
 
