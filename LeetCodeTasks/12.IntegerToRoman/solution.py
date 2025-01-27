@@ -13,7 +13,8 @@ class Solution:
                 num -= value
         return ''.join(result)
 
-
+# Runtime 5 ms, 55 %
+# Memory 18 mb, 17.63 %
 def main():
     num1, num2, num3 = 3749, 58, 1994
     solution = Solution()
