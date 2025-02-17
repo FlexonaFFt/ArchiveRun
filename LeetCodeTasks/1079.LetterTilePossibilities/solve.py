@@ -14,7 +14,8 @@ class Solution:
         counter = Counter(tiles)
         return backtrack(counter)
 
-
+# Runtime 41 ms, 46.21 %
+# Memory 18.05 mb, 49.32 %
 def main():
     solution = Solution()
     print(solution.numTilePossibilities("AAB"))
