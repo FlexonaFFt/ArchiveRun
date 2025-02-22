@@ -4,7 +4,7 @@ class TreeNode:
         self.left= left
         self.right = right
 
-
+# Необходимо отправлять в решении только класс Solution
 class Solution:
     from typing import Optional
     def recoverFromPreorder(self, traversal: str) -> Optional[TreeNode]:
