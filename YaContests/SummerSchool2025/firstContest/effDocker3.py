@@ -30,6 +30,14 @@ class Solution:
         return max_len if max_len >= 2 else 0
 
 
+def test():
+    solution = Solution()
+    print(solution.docker(7, [1, 2, 3, 4, 3, 2, 1]))
+    print(solution.docker(5, [1, 2, 3, 4, 5]))
+    print(solution.docker(10, [1, 2, 3, 4, 5, 5, 4, 3, 2, 1]))
+    print(solution.docker(3, [1, 1, 2]))
+    print(solution.docker(6, [1, 1, 1, 1, 3, 4]))
+
 def main():
     solution = Solution()
     n = int(input())
@@ -38,4 +46,4 @@ def main():
     print(solution.docker(n=n, way=way))
 
 if __name__ == '__main__':
-    main()
+    test()
