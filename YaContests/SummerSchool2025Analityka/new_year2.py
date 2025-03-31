@@ -33,6 +33,7 @@ class Solution:
             for diesel in diesel_trains:
                 if electric['arrival'] <= diesel['departure'] - 15 * 60:
                     total_cost = electric['cost']
+
                     if total_cost < min_cost or \
                        (total_cost == min_cost and diesel['arrival'] < best_route[1]['arrival']) or \
                        (total_cost == min_cost and diesel['arrival'] == best_route[1]['arrival'] and \
@@ -41,6 +42,7 @@ class Solution:
                         best_route = (electric, diesel)
 
         if best_route:
+            print(f"Best Route: Electric {best_route[0]['id']} -> Diesel {best_route[1]['id']}, Cost: {min_cost}")
             print(best_route[0]['id'])
             print(best_route[1]['id'])
 
@@ -54,7 +56,16 @@ def test():
     mlist = ['6731 10:05:00 11:24:00 246',
         'ABCDE 02:50:59 03:15:00 100',
         'X 02:51:00 03:25:00 200']
+
+    nlist2 = ["QT 03:33:22 13:34:29 300",
+        "6OD 08:53:02 09:07:32 300",
+        "17X6M 07:35:48 18:56:54 300"]
+    mlist2 = ['A1E 03:47:30 05:54:32 300',
+        '61FU2 08:34:44 15:19:11 300',
+        'SOJ7K 08:52:25 22:45:04 300']
+
     solve.solveFunction(n, nlist, m, mlist)
+    solve.solveFunction(n, nlist2, m, mlist2)
 
 
 def main():
