@@ -28,39 +28,42 @@ if __name__ == '__main__':
     print(solution.dna_marker_pairs(fragmets=fragments))'''
 
 
-class Solution:
-    def to_mask(self, fragment):
+from sys import stdin
+from collections import defaultdict
+
+def main():
+    import sys
+    input = sys.stdin.read
+    data = input().split()
+
+    n = int(data[0])
+    fragments = data[1:]
+    mask_count = defaultdict(int)
+
+    for frag in fragments:
         mask = 0
-        for c in set(fragment):
+        for c in frag:
             mask |= 1 << (ord(c) - ord('C'))
-        return mask
+        mask_count[mask] += 1
 
-    def dna_marker_pairs(self, fragments):
-        from array import array
+    total = n * (n - 1) // 2
+    disjoint_pairs = 0
+    masks = list(mask_count.keys())
+    for i in range(len(masks)):
+        m1 = masks[i]
+        cnt1 = mask_count[m1]
+        if cnt1 == 0:
+            continue
+        for j in range(i, len(masks)):
+            m2 = masks[j]
+            cnt2 = mask_count[m2]
+            if (m1 & m2) == 0:
+                if m1 == m2:
+                    disjoint_pairs += cnt1 * (cnt1 - 1) // 2
+                else:
+                    disjoint_pairs += cnt1 * cnt2
 
-        N = len(fragments)
-        MAX_MASK = 1 << 10
+    print(total - disjoint_pairs)
 
-        count, res = [0] * MAX_MASK, 0
-        for fragment in fragments:
-            count[self.to_mask(fragment)] += 1
-
-        for m1 in range(MAX_MASK):
-            if count[m1] == 0:
-                continue
-            for m2 in range(m1, MAX_MASK):
-                if count[m2] == 0:
-                    continue
-                if m1 & m2:
-                    if m1 == m2:
-                        res += count[m1] * (count[m1] - 1) // 2
-                    else:
-                        res += count[m1] * count[m2]
-        return res
-
-
-if __name__ == '__main__':
-    solution = Solution()
-    n = int(input())
-    fragments = [input().strip() for _ in range(n)]
-    print(solution.dna_marker_pairs(fragments))
+if __name__ == "__main__":
+    main()
