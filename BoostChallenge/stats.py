@@ -13,8 +13,8 @@ bonus = df['bonus']
 
 plt.figure(figsize=(10, 5))
 plt.plot(days, places, marker='o', color='deepskyblue', alpha=0.6)
-for x, y, p in zip(days, places, points):
-    plt.text(x, y + 0.2, f'{p}', ha='center', fontsize=8)
+for x, y in zip(days, places):
+    plt.text(x, y + 0.2, f'{y}', ha='center', fontsize=8)
 plt.title('Место по дням')
 plt.xlabel('День')
 plt.ylabel('Место')
